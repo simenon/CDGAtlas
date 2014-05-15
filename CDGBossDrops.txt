@@ -1,0 +1,9 @@
+## APIVersion: 100003
+## Title: |cFF2222CrazyDutchGuy's|r Boss Drops |c0066990.1|r
+## Version: 0.1
+## Author: CrazyDutchGuy
+## SavedVariables: CDGBossDrops_SavedVariables 
+
+CDGBossDropsData.lua
+CDGBossDrops.lua
+CDGBossDrops.xml
