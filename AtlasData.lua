@@ -1,5 +1,669 @@
 ATLASData = 
 {
+    ["Volenfell"] = 
+    {        
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+    },
+    ["Tempest Island"] = 
+    {        
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+    },
+    ["Direfrost Keep"] = 
+    {        
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+    },
+    ["City of Ash"] = 
+    {        
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            { 
+            },
+        },
+    },
+    ["Crypt of Hearts"] = 
+    {        
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            { 
+                [1] = 
+                {
+                    ["NAME"] = "The Mage Master",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.202385,
+                        ["Y"] = 0.344659,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [2] = 
+                {
+                    ["NAME"] = "Archmaster Siniel",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.429639,
+                        ["Y"] = 0.155352,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:23716:49:31:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hArchmaster's Ritestaff|h",
+                    }
+                },
+                [3] = 
+                {
+                    ["NAME"] = "Death's Leviathan",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.659197,
+                        ["Y"] = 0.397744,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [4] = 
+                {
+                    ["NAME"] = "Uulkar Bonehand",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.671521,
+                        ["Y"] = 0.597314,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:23713:49:29:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hBonehammer|h",
+                        [2] = "|H3A92FF:item:16047:50:31:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hBonehand's Amulet|h" 
+                    }
+                },
+                [5] = 
+                {
+                    ["NAME"] = "Dogas the Berserker",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.533103,
+                        ["Y"] = 0.669858,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [6] = 
+                {
+                    ["NAME"] = "Ilambris-Zaven",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.528027,
+                        ["Y"] = 0.790123,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [7] = 
+                {
+                    ["NAME"] = "Ilambris-Athor",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.528027,
+                        ["Y"] = 0.790123,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:23727:49:31:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hAthor's Sundering Voice|h" 
+                    }
+                },
+                [8] = 
+                {
+                    ["NAME"] = "Random Dungeon Drops",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0,
+                        ["Y"] = 0,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:45278:4:29:26580:4:29:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hcotton shoes of health^p|h",
+                        [2] = "|H3A92FF:item:43867:4:30:0:0:0:0:0:0:0:0:0:0:0:0:2:0:0:0:0|hIce Furnace Pauldrons|h",
+
+
+                    }
+                },
+            },
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            { 
+              
+            },
+        },
+    },
+    ["Arx Corinium"] = 
+    {        
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            { 
+                [1] = 
+                {
+                    ["NAME"] = "Fanged Menace",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.505328,
+                        ["Y"] = 0.515603,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [2] = 
+                {
+                    ["NAME"] = "Ganakton the Tempest",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.728684,
+                        ["Y"] = 0.597280,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [3] = 
+                {
+                    ["NAME"] = "Sliklenia the Songstress",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.299090,
+                        ["Y"] = 0.767374,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [4] = 
+                {
+                    ["NAME"] = "Matron Ixniaa",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.497479,
+                        ["Y"] = 0.757949,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:16146:50:28:0:0:0:0:0:0:0:0:0:0:0:0:6:0:0:0:0|hIxniaa's Jewels|h", --verified
+                    }
+                },
+                [5] = 
+                {
+                    ["NAME"] = "Ancient Lurcher",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.361951,
+                        ["Y"] = 0.579312,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [6] = 
+                {
+                    ["NAME"] = "Sellistrix the Lamia Queen",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.162696,
+                        ["Y"] = 0.344157,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:16044:49:29:0:0:0:0:0:0:0:0:0:0:0:0:6:0:0:0:0|hSellistrix's Siphon|h" 
+                    }
+                },
+                [7] = 
+                {
+                    ["NAME"] = "Random Dungeon Drops",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0,
+                        ["Y"] = 0,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:28978:50:29:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hChain of the Snake Charmer|h",
+                        [2] = "|H3A92FF:item:23726:49:28:0:0:0:0:0:0:0:0:0:0:0:0:6:0:0:0:0|hBelisaro's Bolt|h",
+                        [3] = "|H3A92FF:item:23731:49:28:0:0:0:0:0:0:0:0:0:0:0:0:6:0:0:0:0|hSweetsong|h",
+                        [4] = "|H3A92FF:item:16149:50:28:0:0:0:0:0:0:0:0:0:0:0:0:19:0:0:0:0|hSwampbinder|h",
+                        [5] = "|H3A92FF:item:43843:4:29:0:0:0:0:0:0:0:0:0:0:0:0:19:0:0:0:0|hHood of the Necromancer|h"
+                    }
+                },           
+            },
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            {            
+            }
+        },
+    },
+    ["Elden Hollow"] = 
+    {
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            {            
+            }
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            {  
+                [1] = 
+                {
+                    ["NAME"] = "Akash gra-Mal",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.694602,
+                        ["Y"] = 0.621524,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [2] = 
+                {
+                    ["NAME"] = "Leafseether",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.722501,
+                        ["Y"] = 0.353088,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [3] = 
+                {
+                    ["NAME"] = "Canonreeve Oraneth",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.537672,
+                        ["Y"] = 0.312328,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:29462:70:50:0:0:0:0:0:0:0:0:0:0:0:0:7:0:0:0:0|hOraneth's Lost Jewels|h"
+                    }
+                },
+                [4] = 
+                {
+                    ["NAME"] = "Chokethorn",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.915704,
+                        ["Y"] = 0.463327,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [5] = 
+                {
+                    ["NAME"] = "Dubroze the Infester",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.691826,
+                        ["Y"] = 0.640449,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [6] = 
+                {
+                    ["NAME"] = "Dark Root",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.766193,
+                        ["Y"] = 0.619258,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [7] = 
+                {
+                    ["NAME"] = "Azara the Frightener",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.916837,
+                        ["Y"] = 0.463594,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:15546:70:50:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hJewel of Azara|h"   
+                    }
+                },
+                [8] = 
+                {
+                    ["NAME"] = "Murklight",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.235041,
+                        ["Y"] = 0.260355,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:28886:80:50:0:0:0:0:0:0:0:0:0:0:0:0:8:0:0:0:0|hMurkhammer|h"     
+                    }
+                },
+                [9] = 
+                {
+                    ["NAME"] = "The Shadow Guard",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.541715,
+                        ["Y"] = 0.313772,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:26168:70:50:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hBand of the Shadow Guard|h"
+                    }
+                },
+                [10] = 
+                {
+                    ["NAME"] = "Bogdan the Nightflame",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.437295,
+                        ["Y"] = 0.848102,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:15767:80:50:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hBogdan's Claw|h",
+                        [2] = "|HA02EF7:item:29459:80:50:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hBogdan's Flame|h"
+                    }
+                },
+                [1] = 
+                {
+                    ["NAME"] = "Random Dungeon Drops",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0,
+                        ["Y"] = 0,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:29458:70:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hDaedroth Tooth Necklace|h",
+                        [2] = "|HA02EF7:item:54278:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Sabatons|h",
+                        [3] = "|HA02EF7:item:29467:80:50:0:0:0:0:0:0:0:0:0:0:0:0:8:0:0:0:0|hDark Root of Restoration|h",
+                        [4] = "|HA02EF7:item:54286:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEpaulets of the Worm Cult|h",
+                        [5] = "|HA02EF7:item:54275:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Gauntlets|h",
+                        [6] = "|HA02EF7:item:54399:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hRobe of the Worm Cult|h",
+                        [7] = "|H3A92FF:item:34388:0:0:0:0:0:0:0:0:0:0:0:0:0:0:9:0:0:0:0|hKargand's Helmet|h",
+                        [8] = "|HA02EF7:item:54252:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Boots|h",
+                        [9] = "|HA02EF7:item:55371:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hElf-Doom Maul|h"
+                    }
+                },          
+            }
+        },
+    },
+    ["Darkshade Caverns"] = 
+    {
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            {            
+            }
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            {  
+                [1] = 
+                {
+                    ["NAME"] = "The Fallen Foreman",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.305647,
+                        ["Y"] = 0.264004,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:28119:70:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hForeman's Ring|h"
+                    }
+                },
+                [2] = 
+                {
+                    ["NAME"] = "Transmuted Hive Lord",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.699076,
+                        ["Y"] = 0.203388,
+                    },
+                    ["DROPS"] = 
+                    {
+                        
+                    }
+                },
+                [3] = 
+                {
+                    ["NAME"] = "Grobull the Transmuted",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.630226,
+                        ["Y"] = 0.621273,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:29466:80:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hGrobull's Charge|h"  
+                    }
+                },
+                [4] = 
+                {
+                    ["NAME"] = "The Engine Guardian",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.182459,
+                        ["Y"] = 0.444321,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:28114:80:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hPincer of the Guardian|h"
+                    }
+                },
+                [5] = 
+                {
+                    ["NAME"] = "Random Dungeon Drops",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0,
+                        ["Y"] = 0
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:29461:70:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hAlit Tongue Charm|h",   
+                        [2] = "|HA02EF7:item:15679:76:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hAutomaton Gem|h", -- Quest Reward ?
+                        [3] = "|H3A92FF:item:45264:89:50:5365:89:50:0:0:0:0:0:0:0:0:0:5:0:0:0:0|hvoidsteel mace of frost^n|h",
+                        [4] = "|HA02EF7:item:54277:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Girdle|h",
+                        [5] = "|HA02EF7:item:15545:80:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hAncient Great Axe|h",
+                    }
+                },          
+            }
+        },
+    },
+    ["Wayrest Sewers"] = 
+    {
+        ["NORMAL"] = 
+        {
+            ["BOSS"] = 
+            {            
+            }
+        },
+        ["VETERAN"] = 
+        {
+            ["BOSS"] = 
+            {
+                [1] = 
+                {
+                    ["NAME"] = "Malubeth the Scourger",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.404012,
+                        ["Y"] = 0.581252
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:7666:80:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hMalubeth's Stinger|h"
+                    }
+                },
+                [2] = 
+                {
+                    ["NAME"] = "Uulgarg the Risen",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.454018,
+                        ["Y"] = 0.266363,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:29465:70:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hUulgarg's Bones|h"                    
+                    }
+                },
+                [3] = 
+                {
+                    ["NAME"] = "Garron the Returned",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.591135,
+                        ["Y"] = 0.268197,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:29464:80:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hGarron's Icy Grasp|h"
+                    }
+                },
+                [4] = 
+                {
+                    ["NAME"] = "The Lost One",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.787075,
+                        ["Y"] = 0.099124,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:28110:70:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hLoop of the Lost|h"
+                    }
+                },
+                [5] = 
+                {
+                    ["NAME"] = "Allene Pellingare",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.695171,
+                        ["Y"] = 0.548882,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:29451:80:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hAllene's Deathly Bow|h"
+                    }
+                },
+                [6] = 
+                {
+                    ["NAME"] = "Veraine Pellingare",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.695171,
+                        ["Y"] = 0.548882,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|HA02EF7:item:28121:80:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hVaraine's Death Knell|h"
+                    }
+                },
+                [7] = 
+                {
+                    ["NAME"] = "Random Dungeon Drops",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0,
+                        ["Y"] = 0
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:26166:70:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hRing of the Risen|h",
+                        [2] = "|HA02EF7:item:55376:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hRing of Blue Ice|h",
+                        [3] = "|HA02EF7:item:55365:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hThe Ebon Sledge|h",
+                        [4] = "|HA02EF7:item:54273:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Pauldrons|h",
+                        [5] = "|HA02EF7:item:54283:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Belt|h",
+                        [6] = "|HA02EF7:item:55379:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hHealing Staff of Thorn|h",
+                        [7] = "|HA02EF7:item:54252:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Boots|h",
+                        [8] = "|HA02EF7:item:54280:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Arm Cops|h",
+                        [9] = "|HA02EF7:item:55372:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hNecklace of Sardavar|h",
+                        [10] = "|HA02EF7:item:55363:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hFlamedancer|h",
+                        [11] = "|HA02EF7:item:54399:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hRobe of the Worm Cult|h",
+                        [12] = "|HA02EF7:item:54252:100:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Boots|h",
+                        [13] = "|HA02EF7:item:55378:100:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hRing of Embers|h",
+                        [14] = "|H3A92FF:item:29460:70:50:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hReaper's Choker|h"
+                    }
+                },
+            }
+        }
+    },
     ["Selene's Web"] = 
     {
         ["NORMAL"] = 
@@ -197,8 +861,8 @@ ATLASData =
                     ["NAME"] = "Mephala's Fang",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.622983,
+                        ["Y"] = 0.798210,
                     },
                     ["DROPS"] = 
                     {
@@ -210,8 +874,8 @@ ATLASData =
                     ["NAME"] = "Gamyne Bandu",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.836180,
+                        ["Y"] = 0.743979,
                     },
                     ["DROPS"] = 
                     {
@@ -223,8 +887,8 @@ ATLASData =
                     ["NAME"] = "Ciirenas the Shepherd",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.457750,
+                        ["Y"] = 0.239187,
                     },
                     ["DROPS"] = 
                     {
@@ -236,8 +900,8 @@ ATLASData =
                     ["NAME"] = "Spawn of Mephala",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.421930,
+                        ["Y"] = 0.421930,
                     },
                     ["DROPS"] = 
                     {
@@ -249,8 +913,8 @@ ATLASData =
                     ["NAME"] = "Reggr Dark-Dawn",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.125543,
+                        ["Y"] = 0.516036,
                     },
                     ["DROPS"] = 
                     {
@@ -272,7 +936,11 @@ ATLASData =
                         [3] = "|HA02EF7:item:54278:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Sabatons|h",
                         [4] = "|HA02EF7:item:54274:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Cuirass|h",
                         [5] = "|HA02EF7:item:28122:75:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hWidow's Voidstaff|h",
-                        [6] = "|H3A92FF:item:34385:65:50:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hShroud of the Resolute|h" -- Defender Two-Blades^M
+                        [6] = "|H3A92FF:item:34385:65:50:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hShroud of the Resolute|h", -- Defender Two-Blades^M
+                        [7] = "|HA02EF7:item:55368:95:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hWhite Bow of Alinor|h",
+                        [8] = "|H3A92FF:item:32176:65:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hMender's Mark|h",
+                        [9] = "|HA02EF7:item:32168:75:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hDebaser|h",
+                        [10] = "|H3A92FF:item:32177:65:50:0:0:0:0:0:0:0:0:0:0:0:0:5:0:0:0:0|hBand of the Breaker|h"
 
                     }
                 },
@@ -692,8 +1360,8 @@ ATLASData =
                     ["NAME"] = "Keeper Areldur",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.743393,
+                        ["Y"] = 0.742101,
                     },
                     ["DROPS"] = 
                     {
@@ -705,8 +1373,8 @@ ATLASData =
                     ["NAME"] = "Maw of the Infernal",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.624902,
+                        ["Y"] = 0.591672,
                     },
                     ["DROPS"] = 
                     {
@@ -718,8 +1386,8 @@ ATLASData =
                     ["NAME"] = "Keeper Voranil",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.480520,
+                        ["Y"] = 0.642749,
                     },
                     ["DROPS"] = 
                     {
@@ -731,8 +1399,8 @@ ATLASData =
                     ["NAME"] = "Keeper Imiril",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.472864,
+                        ["Y"] = 0.202750,
                     },
                     ["DROPS"] = 
                     {
@@ -744,12 +1412,12 @@ ATLASData =
                     ["NAME"] = "Sister Sihna",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.288717,
+                        ["Y"] = 0.234201,
                     },
                     ["DROPS"] = 
                     {
-                        
+                        [1] = "|H3A92FF:item:7717:65:50:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hTalisman of the Sisters|h"   
                     }
                 },
                 [6] = 
@@ -757,8 +1425,8 @@ ATLASData =
                     ["NAME"] = "Sister Vera",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.288717,
+                        ["Y"] = 0.234201,
                     },
                     ["DROPS"] = 
                     {
@@ -770,8 +1438,8 @@ ATLASData =
                     ["NAME"] = "High Kinlord Rilis",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.350912,
+                        ["Y"] = 0.439585,
                     },
                     ["DROPS"] = 
                     {
@@ -798,6 +1466,12 @@ ATLASData =
                         [8] = "|HA02EF7:item:32167:75:50:0:0:0:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hCorruptor's Maul|h",
                         [9] = "|H3A92FF:item:34387:65:50:0:0:0:0:0:0:0:0:0:0:0:0:7:0:0:0:0|hCirion's Last Stand|h", -- Was corrupt link ?
                         [10] = "|HA02EF7:item:54276:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Greaves|h",
+                        [11] = "|HA02EF7:item:54286:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEpaulets of the Worm Cult|h",
+                        [12] = "|HA02EF7:item:54272:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hEbon Helm|h",
+                        --[13] = "|H3A92FF:item:45049:82:50:5365:82:50:0:0:0:0:0:0:0:0:0:5:0:0:0:0|hbirch inferno staff of frost^n|h"
+                        --[14] = "|H3A92FF:item:45049:4:16:26844:4:16:0:0:0:0:0:0:0:0:0:7:0:0:0:0|hoak inferno staff of shock^n|h"
+                        [13] = "|HA02EF7:item:55379:95:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hHealing Staff of Thorn|h",
+                        [14] = "|HA02EF7:item:54279:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Helmet|h"
                     }
                 },
             },
@@ -820,8 +1494,8 @@ ATLASData =
                     ["NAME"] = "Mad Mortine",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.367151,
+                        ["Y"] = 0.337839
                     },
                     ["DROPS"] = 
                     {
@@ -833,8 +1507,8 @@ ATLASData =
                     ["NAME"] = "Blood Spawn",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.561810,
+                        ["Y"] = 0.225738
                     },
                     ["DROPS"] = 
                     {
@@ -846,8 +1520,8 @@ ATLASData =
                     ["NAME"] = "Praxin Douare",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.878555,
+                        ["Y"] = 0.344828
                     },
                     ["DROPS"] = 
                     {
@@ -859,8 +1533,8 @@ ATLASData =
                     ["NAME"] = "Flesh Atronach",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.775926,
+                        ["Y"] = 0.522771
                     },
                     ["DROPS"] = 
                     {
@@ -872,8 +1546,8 @@ ATLASData =
                     ["NAME"] = "Urvan Veleth",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.341244,
+                        ["Y"] = 0.763382
                     },
                     ["DROPS"] = 
                     {
@@ -885,8 +1559,8 @@ ATLASData =
                     ["NAME"] = "Vorenor Winterbourne",
                     ["LOCATION"] = 
                     {
-                        ["X"] = 0,
-                        ["Y"] = 0
+                        ["X"] = 0.680586,
+                        ["Y"] = 0.746225,
                     },
                     ["DROPS"] = 
                     {
@@ -905,12 +1579,15 @@ ATLASData =
                     {
                         [1] = "|H3A92FF:item:32181:65:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hGem of Madness|h",
                         [2] = "|H3A92FF:item:28116:65:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hFleshlinks|h",
-                        [3] = "|H3A92FF:item:45214:82:50:26580:82:50:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hkresh sash of health^p|h",
-                        [4] = "|H3A92FF:item:32182:65:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hSignet of the Stalker|h",
-                        [5] = "|H3A92FF:item:10067:65:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hChain of the Coven|h",
-                        [6] = "|HA02EF7:item:32163:75:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hAx of Sacrifice|h",
-                        [7] = "|HA02EF7:item:54283:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Belt|h",
-                        [8] = "|H3A92FF:item:34386:65:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hAegis of Meridia|h"
+                        --[3] = "|H3A92FF:item:45214:82:50:26580:82:50:0:0:0:0:0:0:0:0:0:15:0:0:0:0|hkresh sash of health^p|h",
+                        [3] = "|H3A92FF:item:32182:65:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hSignet of the Stalker|h",
+                        [4] = "|H3A92FF:item:10067:65:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hChain of the Coven|h",
+                        [5] = "|HA02EF7:item:32163:75:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hAx of Sacrifice|h",
+                        [6] = "|HA02EF7:item:54283:95:50:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hSavior's Belt|h",
+                        [7] = "|H3A92FF:item:34386:65:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hAegis of Meridia|h",
+                        [8] = "|HA02EF7:item:32166:75:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hBloodfury|h",
+                        --[10] = "|H3A92FF:item:45096:4:13:26582:4:13:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hiron sabatons of magicka^p|h",
+                        [9] = "|HA02EF7:item:28884:75:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hVampiric Scepter|h",
 
                     }
                 },

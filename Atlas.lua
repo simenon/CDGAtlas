@@ -8,6 +8,12 @@ local ATLAS_DROPS_DROP_DATA = 3
 ZO_CreateStringId("ATLAS_LOOT_NAME", "ATLAS LOOT")
 
 local ATLAS_ScrollList = nil
+
+local ATLAS_ScrollList_SORT_KEYS =
+{
+    ["locationName"] = { },
+}
+
 local ATLAS_LootWindow = nil
 local ATLAS_Map = nil
 local ATLAS_ScrollList_Drops = nil
@@ -31,6 +37,15 @@ local ATLAS_MAP_TEXTURES =
 	--["Blessed Crucible 5"]  = {"/art/maps/therift/blessedcrucible5_base_", 3, 3},
 	--["Blessed Crucible 6"]  = {"/art/maps/therift/blessedcrucible6_base_", 3, 3},
 	--["Blessed Crucible 7"]  = {"/art/maps/therift/blessedcrucible7_base_", 3, 3},
+	["Wayrest Sewers"] = {"/art/maps/stormhaven/wayrestsewers_base_", 3, 3},
+	["Darkshade Caverns"] = {"/art/maps/deshaan/darkshadecaverns_base_",3,3},
+	["Elden Hollow"] = {"/art/maps/grahtwood/eldenhollow_base_",3,3},
+	["Arx Corinium"] = {"/art/maps/shadowfen/arxcorinium_base_",3,3},
+	["Crypt of Hearts"] = {"/art/maps/rivenspire/cryptofhearts_base_",3,3},
+	["Volenfell"] = {"/art/maps/alikr/volenfell_base_",3,3},
+	["Tempest Island"] = {"/art/maps/malabaltor/tempestisland_base_",3,3},
+	["City of Ash"] = {"/art/maps/greenshade/cityofashmain_base_",3,3},
+	["Direfrost Keep"] = {"/art/maps/eastmarch/direfrostkeep_base_",3,3},
 }
 
 local ATLAS_MAP_TEXTURES_IN_USE = -1
@@ -38,26 +53,28 @@ local ATLAS_BOSS_LABELS_IN_USE = -1
 local ATLAS_DROP_LABELS_IN_USE = -1
 
 local function showAtlasLoot(zone)	
-	local dataSource = ATLASData[zone]["NORMAL"]["BOSS"]
-	if IsUnitUsingVeteranDifficulty("player") then
-		dataSource = ATLASData[zone]["VETERAN"]["BOSS"]
-	end 
-	if dataSource then
-	--
-	-- Add data to the scrollList
-	--
-	local scrollData = ZO_ScrollList_GetDataList(ATLAS_ScrollList_Drops)
-	ZO_ClearNumericallyIndexedTable(scrollData)
+	if ATLASData[zone] then
+		local dataSource = ATLASData[zone]["NORMAL"]["BOSS"]
+		if IsUnitUsingVeteranDifficulty("player") then
+			dataSource = ATLASData[zone]["VETERAN"]["BOSS"]
+		end 
+		if dataSource then
+			--
+			-- Add data to the scrollList
+			--
+			local scrollData = ZO_ScrollList_GetDataList(ATLAS_ScrollList_Drops)
+			ZO_ClearNumericallyIndexedTable(scrollData)
 
-	for i, v in pairs(dataSource) do
-		table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_DROPS_BOSS_DATA, {bossName = v["NAME"]})) 
-		for i, v in ipairs(v["DROPS"]) do
-			table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_DROPS_DROP_DATA, {ItemLink = zo_strformat("<<1>>",v)})) 
-		end	
+			for i, v in ipairs(dataSource) do
+				table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_DROPS_BOSS_DATA, {bossName = v["NAME"]})) 
+				for i, v in ipairs(v["DROPS"]) do
+					table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_DROPS_DROP_DATA, {ItemLink = zo_strformat("<<1>>",v)})) 
+				end	
+			end
+
+			ZO_ScrollList_Commit(ATLAS_ScrollList_Drops)	
+		end
 	end
-
-	ZO_ScrollList_Commit(ATLAS_ScrollList_Drops)	
-end
 end
 
 local function showAtlasWindows(toggle)	
@@ -148,7 +165,7 @@ local function createAtlasInterface()
 	for i, v in pairs(ATLASData) do
 		table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_LOCATION_DATA, {locationName = i}))       		
 	end
-
+	table.sort(scrollData, function(a, b) return ZO_TableOrderingFunction(a.data, b.data, "locationName", ATLAS_ScrollList_SORT_KEYS, ZO_SORT_ORDER_UP) end)
 	ZO_ScrollList_Commit(ATLAS_ScrollList)		
 	--
 	-- Create button for adding to the Rightpane
