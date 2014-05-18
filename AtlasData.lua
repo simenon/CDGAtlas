@@ -1,35 +1,4 @@
---[[
-    ["dungeon"] = 
-    {
-        ["NORMAL"] = 
-        {
-            ["BOSS"] = 
-            {
-                [1] = 
-                {
-                    ["NAME"] = "name",
-                    ["LOCATION"] = 
-                    {
-                        ["X"] = 0,
-                        ["Y"] = 0
-                    },
-                    ["DROPS"] = 
-                    {
-                        
-                    }
-                },
-            }
-        },
-        ["VETERAN"] = 
-        {
-            ["BOSS"] = {}
-        },
-    }
-]]--
--- Zones
--- -- Bosses
--- -- Drops 
-CDGBDData = 
+ATLASData = 
 {
     ["Selene's Web"] = 
     {
@@ -712,7 +681,6 @@ CDGBDData =
         {
            ["BOSS"] = 
            {
-
             }
         },
         ["VETERAN"] = 

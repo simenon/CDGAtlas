@@ -1,0 +1,49 @@
+<GuiXml>
+    <Controls>
+    	<Control name="AtlasLocationRow" virtual="true">
+    		<Anchor point="RIGHT" relativeTo="$(parent)" />
+            <Dimensions y="23"/>
+            <Controls>
+                <Label name="$(parent)Location" inherits="ZO_SelectableLabel" font="ZoFontHeader" wrapMode="ELLIPSIS">
+                    <Anchor point="TOPLEFT" offsetX="20"/>
+                    <OnMouseUp>
+                        ATLAS_LocationRowLocation_OnMouseUp(self, button, upInside)
+                    </OnMouseUp>                   
+                </Label>
+            </Controls>
+        </Control>
+        <Control name="AtlasDropsBossLocationRow" virtual="true">
+            <Anchor point="RIGHT" relativeTo="$(parent)" />
+            <Dimensions y="23"/>
+            <Controls>
+                <Label name="$(parent)BossName" inherits="ZO_SelectableLabel" font="ZoFontHeader" wrapMode="ELLIPSIS">
+                    <Anchor point="TOPLEFT" offsetX="20"/>
+                    <OnMouseUp>
+                        
+                    </OnMouseUp>                   
+                </Label>
+            </Controls>
+        </Control>
+        <Control name="AtlasDropsDropLocationRow" virtual="true">
+            <Anchor point="RIGHT" relativeTo="$(parent)" />
+            <Dimensions y="23"/>
+            <Controls>
+                <Label name="$(parent)ItemLink" inherits="ZO_SelectableLabel" font="ZoFontHeader" wrapMode="ELLIPSIS">
+                    <Anchor point="TOPLEFT" offsetX="40"/>
+                    <OnMouseEnter>
+                        ZO_PopupTooltip_SetLink(self:GetText())
+                    </OnMouseEnter>  
+                    <OnMouseExit>
+                        ZO_PopupTooltip_Hide()
+                    </OnMouseExit>                 
+                </Label>
+            </Controls>
+        </Control>
+
+        <TopLevelControl name="Atlas">
+            <OnInitialized>
+                ATLAS_OnInitialized()
+            </OnInitialized>
+        </TopLevelControl>
+    </Controls>
+</GuiXml>
