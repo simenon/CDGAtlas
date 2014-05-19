@@ -13,10 +13,17 @@ local ATLAS_ScrollList_SORT_KEYS =
 {
     ["locationName"] = { },
 }
-
+--
+-- list of control object references
+--
+local ATLAS_TLW = nil
 local ATLAS_LootWindow = nil
 local ATLAS_Map = nil
 local ATLAS_ScrollList_Drops = nil
+--
+-- more constants
+--
+local ATLAS_MAP_SCALE = 0.8
 
 local ATLAS_MAP_TEXTURES = 
 {
@@ -71,7 +78,9 @@ local function showAtlasLoot(zone)
 					table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_DROPS_DROP_DATA, {ItemLink = zo_strformat("<<1>>",v)})) 
 				end	
 			end
-
+			if #dataSource <= 0 then
+				table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_DROPS_BOSS_DATA, {bossName = "No Loot Known !"})) 
+			end 
 			ZO_ScrollList_Commit(ATLAS_ScrollList_Drops)	
 		end
 	end
@@ -80,6 +89,7 @@ end
 local function showAtlasWindows(toggle)	
 	ATLAS_LootWindow:SetHidden( not toggle )
 	ATLAS_Map:SetHidden( not toggle )
+	ATLAS_TLW:SetHidden( not toggle )
 end
 
 local function buildAtlasMap(zone)	
@@ -93,6 +103,9 @@ local function buildAtlasMap(zone)
 	-- Rebuild the map textures
 	--
 	local map = ATLAS_MAP_TEXTURES[zone]
+	local x,y = ATLAS_Map:GetDimensions()
+	--local tileSize = 270 * ATLAS_MAP_SCALE
+
 	if map then
 		showAtlasWindows(true)
 		for i = 0 , (map[2]*map[3]) - 1 do			
@@ -103,8 +116,8 @@ local function buildAtlasMap(zone)
 				texture = WINDOW_MANAGER:CreateControl(name, ATLAS_Map.bd, CT_TEXTURE)
 			end
 		
-			texture:SetDimensions(270,270)  		
-			texture:SetAnchor( TOPLEFT, ATLAS_Map, TOPLEFT, 270*(math.fmod(i,map[2])), 270*(math.floor(i/map[3])) )
+			texture:SetDimensions(x/map[2],y/map[3])  		
+			texture:SetAnchor( TOPLEFT, ATLAS_Map, TOPLEFT, (x/map[2])*(math.fmod(i,map[2])), (y/map[3])*(math.floor(i/map[3])) )
 			texture:SetTexture(map[1]..i..".dds") 			
 			texture:SetHidden( false )			
 			texture:SetDrawLayer(0)
@@ -119,10 +132,26 @@ local function buildAtlasMap(zone)
 		--				
 		showAtlasWindows(false)		
 	end
+	if ATLASData[zone] then
+		if ATLASData[zone]["INFO"]["FACTION"] == "E" then
+			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_ebonheart_left.dds")
+			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_ebonheart_right.dds")
+		elseif ATLASData[zone]["INFO"]["FACTION"] == "D" then
+			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_daggerfall_left.dds")
+			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_daggerfall_right.dds")
+		elseif ATLASData[zone]["INFO"]["FACTION"] == "A" then
+			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_left.dds")
+			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_right.dds")
+		else
+			ATLAS_TLW.factionTextureLeft:SetTexture("")
+			ATLAS_TLW.factionTextureRight:SetTexture("")
+		end
+		
+	end
 	ZO_WorldMap:SetHidden( true )
 end
 
-local function createAtlasInterface()
+local function createAtlasRIghtPane()
 	--
 	-- Steal dimensions and anchor from similar object (location list)
 	--
@@ -141,7 +170,7 @@ local function createAtlasInterface()
 	--
 	-- Create the scrollList, but don't fill it yet.
 	--	
-	ATLAS_ScrollList = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ScrollList", window, "ZO_ScrollList")
+	ATLAS_ScrollList = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ScrollList", window, "ZO_ScrollList")	
 	ATLAS_ScrollList:SetAnchorFill(ATLASTLW)
 	--
 	-- Add a datatype to the scrollList
@@ -192,17 +221,114 @@ local function createAtlasInterface()
     ZO_PreHookHandler(ZO_WorldMapKey      , "OnShow", function() ZO_WorldMap:SetHidden( false ) showAtlasWindows( false ) end)
     ZO_PreHookHandler(ZO_WorldMapQuests   , "OnShow", function() ZO_WorldMap:SetHidden( false ) showAtlasWindows( false ) end)	
     ZO_PreHookHandler(window              , "OnShow", function() buildAtlasMap(GetMapName()) showAtlasLoot(GetMapName()) end)
-    --
+end
+
+local function createAtlasInterface()
+	--
+	-- This object should hold everything ...
+	--
+	local x,y = ZO_WorldMap:GetDimensions()
+	x = x + 500
+	y = y + 80
+
+	ATLAS_TLW = WINDOW_MANAGER:CreateTopLevelWindow(nil)
+	--ATLAS_TLW:SetMouseEnabled(true)		
+	ATLAS_TLW:SetMovable( false )
+	ATLAS_TLW:SetClampedToScreen(true)
+	ATLAS_TLW:SetDimensions( x , y )
+	ATLAS_TLW:SetAnchor( TOPRIGHT, ZO_WorldMap, TOPRIGHT, 40, -40 )
+	ATLAS_TLW:SetHidden( true )
+	--[[
+	ATLAS_TLW.bd = WINDOW_MANAGER:CreateControl(nil, ATLAS_TLW, CT_BACKDROP)
+	ATLAS_TLW.bd:SetCenterTexture(["/esoui/art/chatwindow/chat_bg_center.dds"], 16, 1)
+	ATLAS_TLW.bd:SetEdgeTexture(["/esoui/art/chatwindow/chat_bg_edge.dds"], 32, 32, 32, 0)
+	ATLAS_TLW.bd:SetInsets(32,32,-32,-32)	
+	ATLAS_TLW.bd:SetAnchorFill(ATLAS_TLW)
+	]]
+	--
+	-- Define a label that holds the addonName and show it on top of the TLW
+	--
+	ATLAS_TLW.title = WINDOW_MANAGER:CreateControl(nil, ATLAS_TLW, CT_LABEL)
+	ATLAS_TLW.title:SetColor(0.8, 0.8, 0.8, 1)
+	ATLAS_TLW.title:SetFont("ZoFontAlert")
+	ATLAS_TLW.title:SetScale(1.5)
+	ATLAS_TLW.title:SetWrapMode(TEX_MODE_CLAMP)
+	ATLAS_TLW.title:SetDrawLayer(2)
+	ATLAS_TLW.title:SetText("Atlas")
+	ATLAS_TLW.title:SetAnchor(TOP, ATLAS_TLW, nil, 110, 25)
+	ATLAS_TLW.title:SetDimensions(200,25)
+	--
+	-- Define a divider, below the label
+	--
+	ATLAS_TLW.titledivider = WINDOW_MANAGER:CreateControl(nil,  ATLAS_TLW, CT_TEXTURE)
+  	ATLAS_TLW.titledivider:SetDimensions(200,5)
+  	ATLAS_TLW.titledivider:SetAnchor(TOP, ATLAS_TLW, nil, 0, 75)
+  	ATLAS_TLW.titledivider:SetTexture("/esoui/art/charactercreate/windowdivider.dds")
+  	ATLAS_TLW.title:SetDrawLayer(2)
+  	--
+  	-- Define a texture that holds the faction of the dungeon
+  	--
+  	ATLAS_TLW.factionTextureLeft = WINDOW_MANAGER:CreateControl("AtlasFactionSelectedTexture",  ATLAS_TLW, CT_TEXTURE)
+  	ATLAS_TLW.factionTextureLeft:SetDimensions(x-240,y)
+  	ATLAS_TLW.factionTextureLeft:SetAnchor(TOPLEFT, ATLAS_TLW, TOPLEFT, 40, 0)
+  	--ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_left.dds")
+  	ATLAS_TLW.factionTextureLeft:SetDrawLayer(1)  	
+	
+  	ATLAS_TLW.factionTextureRight = WINDOW_MANAGER:CreateControl("AtlasFactionHeaderRightTexture",  ATLAS_TLW, CT_TEXTURE)
+  	ATLAS_TLW.factionTextureRight:SetDimensions(400,y)
+  	ATLAS_TLW.factionTextureRight:SetAnchor(TOPRIGHT, ATLAS_TLW, TOPRIGHT, 200, 0)
+  	--ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_right.dds")
+  	ATLAS_TLW.factionTextureRight:SetDrawLayer(1)
+	--
+	-- Define a ToplevelWindow that holds the map textures
+	--
+	local x,y = ZO_WorldMap:GetDimensions()		
+
+	ATLAS_Map = WINDOW_MANAGER:CreateTopLevelWindow(nil)
+	ATLAS_Map:SetMouseEnabled(true)		
+	ATLAS_Map:SetMovable( false )
+	ATLAS_Map:SetClampedToScreen(true)
+	ATLAS_Map:SetDimensions( x*ATLAS_MAP_SCALE , y*ATLAS_MAP_SCALE )
+	ATLAS_Map:SetAnchor( BOTTOMRIGHT, ATLAS_TLW, BOTTOMRIGHT, -100, -40 )
+	ATLAS_Map:SetHidden( true )		
+	--
+	-- Define the Frame that goes around the map
+	-- 
+	ATLAS_Map.bd = WINDOW_MANAGER:CreateControl(nil, ATLAS_Map, CT_BACKDROP)	
+	ATLAS_Map.bd:SetAnchorFill(ATLAS_Map)
+	ATLAS_Map.bd:SetCenterColor(0,0,0,0)
+	ATLAS_Map.bd:SetEdgeTexture("EsoUI/Art/WorldMap/worldmap_frame_edge.dds",128,16,0,0)
+	ATLAS_Map.bd:SetInsets(16,16,-16,-16)	
+	ATLAS_Map.bd:SetDrawLayer(1)
+	--
+	-- Make the frame dirty
+	--
+	ATLAS_Map.bd.texturetop = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
+	ATLAS_Map.bd.texturetop:SetAnchor( TOPLEFT, ATLAS_Map.bd, TOPLEFT, 4, 0 )
+	ATLAS_Map.bd.texturetop:SetDimensions( x-8, 2)	
+	
+	ATLAS_Map.bd.textureleft = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
+	ATLAS_Map.bd.textureleft:SetAnchor( TOPLEFT, ATLAS_Map.bd, TOPLEFT, 0, 4 )
+	ATLAS_Map.bd.textureleft:SetDimensions( 2, y-8)
+
+	ATLAS_Map.bd.textureright = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
+	ATLAS_Map.bd.textureright:SetAnchor( TOPRIGHT, ATLAS_Map.bd, TOPRIGHT, 0, 4 )
+	ATLAS_Map.bd.textureright:SetDimensions( 2, y-8)
+
+	ATLAS_Map.bd.texturebottom = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
+	ATLAS_Map.bd.texturebottom:SetAnchor( BOTTOMLEFT, ATLAS_Map.bd, BOTTOMLEFT, 4, 0 )
+	ATLAS_Map.bd.texturebottom:SetDimensions( x-8, 2)	
+	--
     -- Define a ToplevelWindow to attach to the WorldMap that holds the loot
     --
-    local x,y = ZO_WorldMap:GetDimensions()	
+    local x,y = ATLAS_Map:GetDimensions()	
 
     ATLAS_LootWindow = WINDOW_MANAGER:CreateTopLevelWindow(nil)
 	ATLAS_LootWindow:SetMouseEnabled(true)		
 	ATLAS_LootWindow:SetMovable( false )
 	ATLAS_LootWindow:SetClampedToScreen(true)
-	ATLAS_LootWindow:SetDimensions( x/2 , y )
-	ATLAS_LootWindow:SetAnchor( TOPRIGHT, ZO_WorldMap, TOPLEFT, 0, 0 )
+	ATLAS_LootWindow:SetDimensions( 400 , y )
+	ATLAS_LootWindow:SetAnchor( TOPRIGHT, ATLAS_Map, TOPLEFT, -20, 0 )
 	ATLAS_LootWindow:SetHidden( true )
 
 	ATLAS_LootWindow.bd = WINDOW_MANAGER:CreateControl(nil, ATLAS_LootWindow, CT_BACKDROP)
@@ -237,54 +363,16 @@ local function createAtlasInterface()
 			Label:SetEnabled( true )
 			Label:SetMouseEnabled( true )	
 		end
-	)
-	
-	--
-	-- Define a ToplevelWindow that holds the map textures
-	--
-	local x,y = ZO_WorldMap:GetDimensions()	
+	)	
 
-    ATLAS_Map = WINDOW_MANAGER:CreateTopLevelWindow(nil)
-	ATLAS_Map:SetMouseEnabled(true)		
-	ATLAS_Map:SetMovable( false )
-	ATLAS_Map:SetClampedToScreen(true)
-	ATLAS_Map:SetDimensions( x , y )
-	ATLAS_Map:SetAnchor( TOPLEFT, ZO_WorldMap, TOPLEFT, 0, 0 )
-	ATLAS_Map:SetHidden( true )	
-	--
-	-- Define the Frame that goes around the map
-	-- 
-	ATLAS_Map.bd = WINDOW_MANAGER:CreateControl(nil, ATLAS_Map, CT_BACKDROP)	
-	ATLAS_Map.bd:SetAnchorFill(ATLAS_Map)
-	ATLAS_Map.bd:SetCenterColor(0,0,0,0)
-	ATLAS_Map.bd:SetEdgeTexture("EsoUI/Art/WorldMap/worldmap_frame_edge.dds",128,16,0,0)
-	ATLAS_Map.bd:SetInsets(16,16,-16,-16)	
-	ATLAS_Map.bd:SetDrawLayer(1)
-	--
-	-- Make the frame dirty
-	--
-	ATLAS_Map.bd.texturetop = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
-	ATLAS_Map.bd.texturetop:SetAnchor( TOPLEFT, ATLAS_Map.bd, TOPLEFT, 4, 0 )
-	ATLAS_Map.bd.texturetop:SetDimensions( x-8, 2)	
-	
-	ATLAS_Map.bd.textureleft = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
-	ATLAS_Map.bd.textureleft:SetAnchor( TOPLEFT, ATLAS_Map.bd, TOPLEFT, 0, 4 )
-	ATLAS_Map.bd.textureleft:SetDimensions( 2, y-8)
-
-	ATLAS_Map.bd.textureright = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
-	ATLAS_Map.bd.textureright:SetAnchor( TOPRIGHT, ATLAS_Map.bd, TOPRIGHT, 0, 4 )
-	ATLAS_Map.bd.textureright:SetDimensions( 2, y-8)
-
-	ATLAS_Map.bd.texturebottom = WINDOW_MANAGER:CreateControlFromVirtual(nil, ATLAS_Map, "ZO_WorldMapFrameMunge")
-	ATLAS_Map.bd.texturebottom:SetAnchor( BOTTOMLEFT, ATLAS_Map.bd, BOTTOMLEFT, 4, 0 )
-	ATLAS_Map.bd.texturebottom:SetDimensions( x-8, 2)	
+	createAtlasRIghtPane()
 end
 
 function ATLAS_LocationRowLocation_OnMouseUp(self, button, upInside)
 	ZO_WorldMap:SetHidden( true )
 	showAtlasWindows( true )
 	buildAtlasMap(self:GetText())
-	showAtlasLoot(self:GetText())
+	showAtlasLoot(self:GetText())	
 end
 
 function ATLAS:EVENT_ADD_ON_LOADED(eventCode, addonName, ...)

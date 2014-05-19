@@ -1,7 +1,11 @@
 ATLASData = 
 {
     ["Volenfell"] = 
-    {        
+    {   
+        ["INFO"] = 
+        {
+            ["FACTION"] = "D"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -16,7 +20,11 @@ ATLASData =
         },
     },
     ["Tempest Island"] = 
-    {        
+    {      
+        ["INFO"] = 
+        {
+            ["FACTION"] = "A"
+        },  
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -31,7 +39,11 @@ ATLASData =
         },
     },
     ["Direfrost Keep"] = 
-    {        
+    {            
+        ["INFO"] = 
+        {
+            ["FACTION"] = "E"
+        },    
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -46,7 +58,12 @@ ATLASData =
         },
     },
     ["City of Ash"] = 
-    {        
+    {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "A"
+        },        
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -62,6 +79,11 @@ ATLASData =
     },
     ["Crypt of Hearts"] = 
     {        
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "D"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -185,7 +207,12 @@ ATLASData =
         },
     },
     ["Arx Corinium"] = 
-    {        
+    {       
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "E"
+        }, 
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -296,6 +323,11 @@ ATLASData =
     },
     ["Elden Hollow"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "A"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -463,6 +495,11 @@ ATLASData =
     },
     ["Darkshade Caverns"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "E"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -547,6 +584,11 @@ ATLASData =
     },
     ["Wayrest Sewers"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "D"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -666,6 +708,11 @@ ATLASData =
     },
     ["Selene's Web"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "A"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -781,6 +828,11 @@ ATLASData =
     },
     ["Fungal Grotto"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "E"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -949,6 +1001,11 @@ ATLASData =
     },
     ["Vaults of Madness"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "?"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -1098,6 +1155,11 @@ ATLASData =
 	--
     ["Blessed Crucible"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "E"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -1234,6 +1296,11 @@ ATLASData =
     },
     ["Blackheart Haven"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "D"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
@@ -1345,6 +1412,11 @@ ATLASData =
     },
     ["The Banished Cells"] = 
     {
+
+        ["INFO"] = 
+        {
+            ["FACTION"] = "A"
+        },
         ["NORMAL"] = 
         {
            ["BOSS"] = 
@@ -1478,7 +1550,11 @@ ATLASData =
         },
     },
     ["Spindleclutch"] = 
-    {
+    {        
+        ["INFO"] = 
+        {
+            ["FACTION"] = "D"
+        },
         ["NORMAL"] = 
         {
             ["BOSS"] = 
