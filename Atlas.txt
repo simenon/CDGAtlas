@@ -1,6 +1,6 @@
 ## APIVersion: 100003
-## Title: |cFF2222ATLAS|r |c0066990.3|r
-## Version: 0.3
+## Title: |cFF2222ATLAS|r |c0066990.4|r
+## Version: 0.4
 ## Author: CrazyDutchGuy
 ## SavedVariables: Atlas_SavedVariables 
 

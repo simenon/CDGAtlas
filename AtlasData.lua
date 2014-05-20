@@ -68,6 +68,99 @@ ATLASData =
         {
             ["BOSS"] = 
             { 
+                [1] = 
+                {
+                    ["NAME"] = "Golor the Banekin Handler",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.208181,
+                        ["Y"] = 0.667351,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [2] = 
+                {
+                    ["NAME"] = "Warden of the Shrine",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.283324,
+                        ["Y"] = 0.592363,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [3] = 
+                {
+                    ["NAME"] = "Infernal Guardian",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.445568,
+                        ["Y"] = 0.207258,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [4] = 
+                {
+                    ["NAME"] = "Dark Ember",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.376636,
+                        ["Y"] = 0.405533,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [5] = 
+                {
+                    ["NAME"] = "Rothariel Flameheart",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.547503,
+                        ["Y"] = 0.519068,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [6] = 
+                {
+                    ["NAME"] = "Razor Master Erthas",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0.710312,
+                        ["Y"] = 0.671252,
+                    },
+                    ["DROPS"] = 
+                    {
+                       
+                    }
+                },
+                [7] = 
+                {
+                    ["NAME"] = "Random Dungeon Drops",
+                    ["LOCATION"] = 
+                    {
+                        ["X"] = 0,
+                        ["Y"] = 0,
+                    },
+                    ["DROPS"] = 
+                    {
+                        [1] = "|H3A92FF:item:43870:4:31:0:0:0:0:0:0:0:0:0:0:0:0:2:0:0:0:0|hIce Furnace Sabatons|h",
+                        [2] = "|H3A92FF:item:28979:49:31:0:0:0:0:0:0:0:0:0:0:0:0:8:0:0:0:0|hBow of the Deadlands|h"
+                    }
+                },
+
             },
         },
         ["VETERAN"] = 
@@ -308,7 +401,8 @@ ATLASData =
                         [1] = "|H3A92FF:item:28978:50:29:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hChain of the Snake Charmer|h",
                         [2] = "|H3A92FF:item:23726:49:28:0:0:0:0:0:0:0:0:0:0:0:0:6:0:0:0:0|hBelisaro's Bolt|h",
                         [3] = "|H3A92FF:item:23731:49:28:0:0:0:0:0:0:0:0:0:0:0:0:6:0:0:0:0|hSweetsong|h",
-                        [4] = "|H3A92FF:item:16149:50:28:0:0:0:0:0:0:0:0:0:0:0:0:19:0:0:0:0|hSwampbinder|h",
+                        --[4] = "|H3A92FF:item:16149:50:28:0:0:0:0:0:0:0:0:0:0:0:0:19:0:0:0:0|hSwampbinder|h",
+                        [4] = "|H3A92FF:item:16149:50:31:0:0:0:0:0:0:0:0:0:0:0:0:19:0:0:0:0|hSwampbinder|h",
                         [5] = "|H3A92FF:item:43843:4:29:0:0:0:0:0:0:0:0:0:0:0:0:19:0:0:0:0|hHood of the Necromancer|h"
                     }
                 },           
@@ -469,7 +563,7 @@ ATLASData =
                         [2] = "|HA02EF7:item:29459:80:50:0:0:0:0:0:0:0:0:0:0:0:0:17:0:0:0:0|hBogdan's Flame|h"
                     }
                 },
-                [1] = 
+                [11] = 
                 {
                     ["NAME"] = "Random Dungeon Drops",
                     ["LOCATION"] = 
@@ -992,7 +1086,8 @@ ATLASData =
                         [7] = "|HA02EF7:item:55368:95:50:0:0:0:0:0:0:0:0:0:0:0:0:20:0:0:0:0|hWhite Bow of Alinor|h",
                         [8] = "|H3A92FF:item:32176:65:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hMender's Mark|h",
                         [9] = "|HA02EF7:item:32168:75:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hDebaser|h",
-                        [10] = "|H3A92FF:item:32177:65:50:0:0:0:0:0:0:0:0:0:0:0:0:5:0:0:0:0|hBand of the Breaker|h"
+                        [10] = "|H3A92FF:item:32177:65:50:0:0:0:0:0:0:0:0:0:0:0:0:5:0:0:0:0|hBand of the Breaker|h",
+                        [11] = "|H3A92FF:item:28115:65:50:0:0:0:0:0:0:0:0:0:0:0:0:4:0:0:0:0|hSpidersilk Garland|h"
 
                     }
                 },
@@ -1664,6 +1759,7 @@ ATLASData =
                         [8] = "|HA02EF7:item:32166:75:50:0:0:0:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hBloodfury|h",
                         --[10] = "|H3A92FF:item:45096:4:13:26582:4:13:0:0:0:0:0:0:0:0:0:3:0:0:0:0|hiron sabatons of magicka^p|h",
                         [9] = "|HA02EF7:item:28884:75:50:0:0:0:0:0:0:0:0:0:0:0:0:34:0:0:0:0|hVampiric Scepter|h",
+                        [10] = "|HA02EF7:item:32191:75:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|hNightmare|h"
 
                     }
                 },
