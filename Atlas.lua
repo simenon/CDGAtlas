@@ -101,7 +101,9 @@ local function showAtlasWindows(toggle)
 	ATLAS_LootWindow:SetHidden( not toggle )
 	ATLAS_Map:SetHidden( not toggle )
 	ATLAS_TLW:SetHidden( not toggle )
-	CHAT_SYSTEM:Maximize()
+	if not toggle then
+		CHAT_SYSTEM:Maximize()
+	end
 end
 
 local function buildAtlasMap(zone)	
@@ -145,29 +147,56 @@ local function buildAtlasMap(zone)
 		showAtlasWindows(false)		
 	end
 	if ATLASData[zone] then
+		local titleText = zone
+		if ATLAS.isVeteranDifficulty then
+			if ATLASData[zone]["VETERAN"]["INFO"] then
+				titleText = titleText .. " [V"..ATLASData[zone]["VETERAN"]["INFO"]["MINLEVEL"].."-V"..ATLASData[zone]["VETERAN"]["INFO"]["MAXLEVEL"].."]"
+			else
+				titleText = titleText .. " [V??-V??]" -- Placeholder till everythign is set in datafile
+			end
+		else
+			if ATLASData[zone]["NORMAL"]["INFO"] then
+				titleText = titleText .. " ["..ATLASData[zone]["NORMAL"]["INFO"]["MINLEVEL"].."-"..ATLASData[zone]["NORMAL"]["INFO"]["MAXLEVEL"].."]"
+			else
+				titleText = titleText .. " [??-??]" -- Placeholder till everythign is set in datafile
+			end
+		end		
+		ATLAS_Map.MapTitle:SetText(titleText)
+
+		ATLAS_Map.MapTitleIcon:SetTexture("/esoui/art/icons/poi/poi_groupinstance_complete.dds")
+		--ATLAS_Map.MapTitleIcon:SetTexture("/esoui/art/icons/poi/poi_groupdungeon_complete.dds")
+    	--ATLAS_Map.MapTitleIcon:SetTexture("/esoui/art/icons/poi/poi_dungeon_complete.dds")  
 		if ATLASData[zone]["INFO"]["FACTION"] == "E" then
 			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_ebonheart_left.dds")
 			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_ebonheart_right.dds")
-			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_ebonheart.dds")
-			ATLAS_LootWindow.iconTexture:SetHidden(false)			
+			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_ebonheart.dds")			
+			ATLAS_LootWindow.iconTexture:SetHidden(false)
+			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_ebonheart.dds")
+			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(false)				
 		elseif ATLASData[zone]["INFO"]["FACTION"] == "D" then
 			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_daggerfall_left.dds")
 			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_daggerfall_right.dds")
 			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_daggerfall.dds")
-			ATLAS_LootWindow.iconTexture:SetHidden(false)			
+			ATLAS_LootWindow.iconTexture:SetHidden(false)
+			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_daggefall.dds")
+			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(false)				
 		elseif ATLASData[zone]["INFO"]["FACTION"] == "A" then
 			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_left.dds")
 			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_right.dds")
 			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_aldmeri.dds")
-			ATLAS_LootWindow.iconTexture:SetHidden(false)			
+			ATLAS_LootWindow.iconTexture:SetHidden(false)
+			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_aldmeri.dds")
+			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(false)				
 		else
 			ATLAS_TLW.factionTextureLeft:SetTexture("Atlas/art/background_common_left.dds")
 			ATLAS_TLW.factionTextureRight:SetTexture("Atlas/art/background_common_right.dds")							
 			--ATLAS_LootWindow.iconTexture:SetTexture("")
 			ATLAS_LootWindow.iconTexture:SetHidden(true)
+			--ATLAS_TLW.FactionHeaderIconTexture:SetTexture("")
+			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(true)		
 		end		
 	end
-	ZO_WorldMap:SetHidden( true )
+	ZO_WorldMap:SetHidden( true )	
 end
 
 local function createAtlasRIghtPane()
@@ -280,27 +309,32 @@ local function createAtlasInterface()
   	-- Define a texture that holds the faction of the dungeon
   	--
   	ATLAS_TLW.factionTextureLeft = WINDOW_MANAGER:CreateControl(nil, ATLAS_TLW, CT_TEXTURE)
-  	ATLAS_TLW.factionTextureLeft:SetDimensions(x-240,y)
+  	ATLAS_TLW.factionTextureLeft:SetDimensions(x-240,y-500)
   	ATLAS_TLW.factionTextureLeft:SetAnchor(TOPLEFT, ATLAS_TLW, TOPLEFT, 40, 0)  	
 	
   	ATLAS_TLW.factionTextureRight = WINDOW_MANAGER:CreateControl(nil, ATLAS_TLW, CT_TEXTURE)
-  	ATLAS_TLW.factionTextureRight:SetDimensions(400,y)
+  	ATLAS_TLW.factionTextureRight:SetDimensions(400,y-500)
   	ATLAS_TLW.factionTextureRight:SetAnchor(TOPRIGHT, ATLAS_TLW, TOPRIGHT, 200, 0)  
   	--
 	-- Define a divider above the faction textures
 	--
 	ATLAS_TLW.titledividerLeft = WINDOW_MANAGER:CreateControl(nil,  ATLAS_TLW, CT_TEXTURE)
   	ATLAS_TLW.titledividerLeft:SetDimensions(x-100,4)
-  	ATLAS_TLW.titledividerLeft:SetAnchor(TOPLEFT, ATLAS_TLW, TOPLEFT, 50, 12)
+  	ATLAS_TLW.titledividerLeft:SetAnchor(TOPLEFT, ATLAS_TLW, TOPLEFT, 50, 6)
   	ATLAS_TLW.titledividerLeft:SetTexture("/esoui/art/guild/sectiondivider_left.dds")	
 
   	ATLAS_TLW.titledividerRight = WINDOW_MANAGER:CreateControl(nil,  ATLAS_TLW, CT_TEXTURE)
   	ATLAS_TLW.titledividerRight:SetDimensions(100,4)
   	ATLAS_TLW.titledividerRight:SetAnchor(TOPLEFT, ATLAS_TLW.titledividerLeft, TOPRIGHT, 0, 0)
   	ATLAS_TLW.titledividerRight:SetTextureCoords(0, 1, 0, 0.391)
-  	ATLAS_TLW.titledividerRight:SetTexture("/esoui/art/guild/sectiondivider_right.dds")	
-  	
-
+  	ATLAS_TLW.titledividerRight:SetTexture("/esoui/art/guild/sectiondivider_right.dds")
+  	--
+  	-- Add a faction texture
+  	--
+  	ATLAS_TLW.FactionHeaderIconTexture = WINDOW_MANAGER:CreateControl(nil,  ATLAS_TLW, CT_TEXTURE)
+    ATLAS_TLW.FactionHeaderIconTexture:SetDimensions(120,120)
+    ATLAS_TLW.FactionHeaderIconTexture:SetAnchor(TOP, ATLAS_TLW, nil, (x/2)-140, 50)
+    --ATLAS_TLW.FactionHeaderIconTexture:SetTexture("")	--Will be set when zone gets determined
 	--
 	-- Define a ToplevelWindow that holds the map textures
 	--
@@ -315,6 +349,22 @@ local function createAtlasInterface()
 	ATLAS_Map:SetDimensions( x , y )
 	ATLAS_Map:SetAnchor( BOTTOMRIGHT, ATLAS_TLW, BOTTOMRIGHT, -100, -40 )
 	ATLAS_Map:SetHidden( true )		
+	--
+  	-- Adding mapTitleIcon to indicate what kind of dungeon we are looking at
+  	--
+  	ATLAS_Map.MapTitleIcon = WINDOW_MANAGER:CreateControl(nil,  ATLAS_Map, CT_TEXTURE)
+    ATLAS_Map.MapTitleIcon:SetDimensions(35,35)
+    ATLAS_Map.MapTitleIcon:SetAnchor(TOP, ATLAS_Map, nil, (-x/2)+18, -35)
+    -- ATLAS_Map.MapTitleIcon:SetTexture("/esoui/art/icons/poi/poi_groupinstance_complete.dds") -- Will be set when zone gets determined  
+    --
+    -- Adding mapTitleText that holds the dungeon name
+    --
+  	ATLAS_Map.MapTitle = WINDOW_MANAGER:CreateControl(nil, ATLAS_Map, CT_LABEL)
+    ATLAS_Map.MapTitle:SetColor(0.8, 0.8, 0.8, 1)
+    ATLAS_Map.MapTitle:SetFont("ZoFontAlert")
+    --ATLAS_Map.MapTitle:SetText("") -- Will be set when zone gets determined
+    ATLAS_Map.MapTitle:SetAnchor(LEFT, ATLAS_Map.MapTitleIcon, RIGHT, 0, 0)
+    ATLAS_Map.MapTitle:SetDimensions(400,25)
 	--
 	-- Define the Frame that goes around the map
 	-- 
@@ -370,7 +420,7 @@ local function createAtlasInterface()
 	ATLAS_LootWindow.bd:SetInsets(32,32,-32,-32)	
 	ATLAS_LootWindow.bd:SetAnchorFill(ATLAS_LootWindow)
 	--
-	-- 
+	-- Add the lootwindow scrolllist that holds bosses and drops
 	--
   	local x,y = ATLAS_LootWindow:GetDimensions()
   	ATLAS_LootWindow.scrollList = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ScrollList", ATLAS_LootWindow, "ZO_ScrollList")
@@ -414,6 +464,7 @@ local function createAtlasInterface()
   			ATLAS_LootWindow.normalDifficultyButton:SetState(BSTATE_NORMAL, false)
             ATLAS_LootWindow.veteranDifficultyButton:SetState(BSTATE_PRESSED, true)
   			refreshAtlasLoot()
+  			buildAtlasMap(ATLAS.lastZoneRequested)
   		end )
   	ATLAS_LootWindow.veteranDifficultyButton:SetHandler("OnMouseEnter", function() 
   			InitializeTooltip(InformationTooltip, ATLAS_LootWindow.veteranDifficultyButton, BOTTOM, 0, 0)
@@ -438,6 +489,7 @@ local function createAtlasInterface()
   			ATLAS_LootWindow.normalDifficultyButton:SetState(BSTATE_PRESSED, false)
             ATLAS_LootWindow.veteranDifficultyButton:SetState(BSTATE_NORMAL, true)
   			refreshAtlasLoot()
+  			buildAtlasMap(ATLAS.lastZoneRequested)
   		end )
   	ATLAS_LootWindow.normalDifficultyButton:SetHandler("OnMouseEnter", function() 
   			InitializeTooltip(InformationTooltip, ATLAS_LootWindow.normalDifficultyButton, BOTTOM, 0, 0)

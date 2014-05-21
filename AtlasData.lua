@@ -8,6 +8,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 35,
+                ["MAXLEVEL"] = 36,
+            },
             ["BOSS"] = 
             { 
             },
@@ -27,6 +32,11 @@ ATLASData =
         },  
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 35,
+                ["MAXLEVEL"] = 36,
+            },
             ["BOSS"] = 
             { 
             },
@@ -46,6 +56,11 @@ ATLASData =
         },    
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 35,
+                ["MAXLEVEL"] = 36,
+            },
             ["BOSS"] = 
             { 
             },
@@ -66,6 +81,11 @@ ATLASData =
         },        
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 28,
+                ["MAXLEVEL"] = 31,
+            },
             ["BOSS"] = 
             { 
                 [1] = 
@@ -179,6 +199,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 28,
+                ["MAXLEVEL"] = 31,
+            },
             ["BOSS"] = 
             { 
                 [1] = 
@@ -308,6 +333,11 @@ ATLASData =
         }, 
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 28,
+                ["MAXLEVEL"] = 31,
+            },
             ["BOSS"] = 
             { 
                 [1] = 
@@ -424,6 +454,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 20,
+                ["MAXLEVEL"] = 23,
+            },
             ["BOSS"] = 
             {            
             }
@@ -596,6 +631,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 20,
+                ["MAXLEVEL"] = 23,
+            },
             ["BOSS"] = 
             {            
             }
@@ -685,6 +725,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 20,
+                ["MAXLEVEL"] = 23,
+            },
             ["BOSS"] = 
             {            
             }
@@ -809,6 +854,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 40,
+                ["MAXLEVEL"] = 43,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -929,6 +979,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 12,
+                ["MAXLEVEL"] = 15,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -1000,6 +1055,11 @@ ATLASData =
         },
         ["VETERAN"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 1,
+                ["MAXLEVEL"] = 5,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -1103,6 +1163,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 47,
+                ["MAXLEVEL"] = 50,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -1257,6 +1322,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 40,
+                ["MAXLEVEL"] = 43,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -1398,6 +1468,11 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 40,
+                ["MAXLEVEL"] = 43,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -1514,12 +1589,22 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
-           ["BOSS"] = 
-           {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 12,
+                ["MAXLEVEL"] = 15,
+            },
+            ["BOSS"] = 
+            {
             }
         },
         ["VETERAN"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 1,
+                ["MAXLEVEL"] = 5,
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -1652,12 +1737,22 @@ ATLASData =
         },
         ["NORMAL"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 12,
+                ["MAXLEVEL"] = 15,
+            },
             ["BOSS"] = 
             {                
             }
         },
         ["VETERAN"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = 1,
+                ["MAXLEVEL"] = 5,
+            },
             ["BOSS"] = 
             {
                 [1] = 
