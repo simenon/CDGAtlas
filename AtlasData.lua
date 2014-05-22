@@ -19,6 +19,11 @@ ATLASData =
         },
         ["VETERAN"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             { 
             },
@@ -43,6 +48,11 @@ ATLASData =
         },
         ["VETERAN"] = 
         {
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             { 
             },
@@ -66,7 +76,12 @@ ATLASData =
             },
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             { 
             },
@@ -184,7 +199,12 @@ ATLASData =
             },
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             { 
             },
@@ -317,7 +337,12 @@ ATLASData =
             },
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             { 
               
@@ -439,7 +464,12 @@ ATLASData =
             },
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             {            
             }
@@ -464,7 +494,12 @@ ATLASData =
             }
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             {  
                 [1] = 
@@ -641,7 +676,12 @@ ATLASData =
             }
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             {  
                 [1] = 
@@ -735,7 +775,12 @@ ATLASData =
             }
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = 
             {
                 [1] = 
@@ -965,7 +1010,12 @@ ATLASData =
             },
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = {},
             ["DROPS"] = {}
         },
@@ -1293,7 +1343,12 @@ ATLASData =
             }
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = {},
             ["DROPS"] = {}
         },
@@ -1454,7 +1509,12 @@ ATLASData =
             }
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = {},
             ["DROPS"] = {}
         },
@@ -1575,7 +1635,12 @@ ATLASData =
             }
         },
         ["VETERAN"] = 
-        {
+        {    
+            ["INFO"] = 
+            {
+                ["MINLEVEL"] = "?",
+                ["MAXLEVEL"] = "?",
+            },
             ["BOSS"] = {},
             ["DROPS"] = {}
         },

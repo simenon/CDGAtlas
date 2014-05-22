@@ -7,11 +7,12 @@ local ATLAS_DROPS_DROP_DATA = 3
 
 ZO_CreateStringId("ATLAS_LOOT_NAME", "ATLAS LOOT")
 
-local ATLAS_ScrollList = nil
-
 local ATLAS_ScrollList_SORT_KEYS =
 {
     ["locationName"] = { },
+    ["factionIcon"] = {  tiebreaker = "locationName" },
+    ["NormalLevel"] = {  tiebreaker = "locationName" },
+    ["VeteranLevel"] = {  tiebreaker = "locationName" },
 }
 --
 -- list of control object references
@@ -19,15 +20,22 @@ local ATLAS_ScrollList_SORT_KEYS =
 local ATLAS_TLW = nil
 local ATLAS_LootWindow = nil
 local ATLAS_Map = nil
+local ATLAS_RIGHTPANE = nil
 --
 -- more constants
 --
 local ATLAS_MAP_SCALE = 0.8
+
+local DAGGERFALL = "D"
+local EBONHEART  = "E"
+local ALDMERI    = "A"
+local UNKNOWN	 = "?"
 --
 -- Some variables that should be saved ...
 --
 ATLAS.isVeteranDifficulty = true
 ATLAS.lastZoneRequested = nil
+ATLAS.chatWasMinimized = false
 
 local ATLAS_MAP_TEXTURES = 
 {
@@ -102,7 +110,9 @@ local function showAtlasWindows(toggle)
 	ATLAS_Map:SetHidden( not toggle )
 	ATLAS_TLW:SetHidden( not toggle )
 	if not toggle then
-		CHAT_SYSTEM:Maximize()
+		if not ATLAS.chatWasMinimized then
+			CHAT_SYSTEM:Maximize()
+		end
 	end
 end
 
@@ -171,21 +181,25 @@ local function buildAtlasMap(zone)
 			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_ebonheart_right.dds")
 			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_ebonheart.dds")			
 			ATLAS_LootWindow.iconTexture:SetHidden(false)
-			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_ebonheart.dds")
+			
+			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/compass/ava_borderkeep_pin_ebonheart.dds")
+			--ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_ebonheart.dds")
 			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(false)				
 		elseif ATLASData[zone]["INFO"]["FACTION"] == "D" then
 			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_daggerfall_left.dds")
 			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_daggerfall_right.dds")
 			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_daggerfall.dds")
 			ATLAS_LootWindow.iconTexture:SetHidden(false)
-			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_daggefall.dds")
+			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/compass/ava_borderkeep_pin_daggerfall.dds")
+			--ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_daggefall.dds")
 			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(false)				
 		elseif ATLASData[zone]["INFO"]["FACTION"] == "A" then
 			ATLAS_TLW.factionTextureLeft:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_left.dds")
 			ATLAS_TLW.factionTextureRight:SetTexture("/esoui/art/campaign/overview_scoringbg_aldmeri_right.dds")
 			ATLAS_LootWindow.iconTexture:SetTexture("/esoui/art/guild/banner_aldmeri.dds")
 			ATLAS_LootWindow.iconTexture:SetHidden(false)
-			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_aldmeri.dds")
+			ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/compass/ava_borderkeep_pin_aldmeri.dds")
+			--ATLAS_TLW.FactionHeaderIconTexture:SetTexture("/esoui/art/campaign/overview_allianceicon_aldmeri.dds")
 			ATLAS_TLW.FactionHeaderIconTexture:SetHidden(false)				
 		else
 			ATLAS_TLW.factionTextureLeft:SetTexture("Atlas/art/background_common_left.dds")
@@ -208,42 +222,119 @@ local function createAtlasRIghtPane()
 	--
 	-- Define the toplevelwindow to hold the scrollList
 	--
-	local window = WINDOW_MANAGER:CreateTopLevelWindow(ATLAS.addonName.."TLW".."SL")
-	window:SetMouseEnabled(true)		
-	window:SetMovable( false )
-	window:SetClampedToScreen(true)
-	window:SetDimensions( x, y )
-	window:SetAnchor( point, relativeTo, relativePoint, offsetX, offsetY )
-	window:SetHidden( true )
+	ATLAS_RIGHTPANE = WINDOW_MANAGER:CreateTopLevelWindow(ATLAS.addonName.."TLW".."RIGHTPANE")
+	ATLAS_RIGHTPANE:SetMouseEnabled(true)		
+	ATLAS_RIGHTPANE:SetMovable( false )
+	ATLAS_RIGHTPANE:SetClampedToScreen(true)
+	ATLAS_RIGHTPANE:SetDimensions( x, y )
+	ATLAS_RIGHTPANE:SetAnchor( point, relativeTo, relativePoint, offsetX, offsetY )
+	ATLAS_RIGHTPANE:SetHidden( true )
+	--
+	-- Create Sort Headers
+	--
+	ATLAS_RIGHTPANE.Headers = WINDOW_MANAGER:CreateControl("$(parent)Headers",ATLAS_RIGHTPANE,nil) 
+	ATLAS_RIGHTPANE.Headers:SetAnchor( TOPLEFT, ATLAS_RIGHTPANE, TOPLEFT, 0, 0 )
+	ATLAS_RIGHTPANE.Headers:SetHeight(32)
+
+	ATLAS_RIGHTPANE.Headers.Faction = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)Faction",ATLAS_RIGHTPANE.Headers,"ZO_SortHeaderIcon") 
+	ATLAS_RIGHTPANE.Headers.Faction:SetDimensions(16,32)
+	ATLAS_RIGHTPANE.Headers.Faction:SetAnchor( TOPLEFT, ATLAS_RIGHTPANE.Headers, TOPLEFT, 8, 0 )
+	ZO_SortHeader_InitializeArrowHeader(ATLAS_RIGHTPANE.Headers.Faction, "Faction", ZO_SORT_ORDER_UP)
+	ZO_SortHeader_SetTooltip(ATLAS_RIGHTPANE.Headers.Faction, "Sort on Faction")
+	ATLAS_RIGHTPANE.Headers.Faction:SetHandler("OnMouseUp", 
+		function(...) 			
+			local scrollData = ZO_ScrollList_GetDataList(ATLAS_RIGHTPANE.ScrollList)
+			table.sort(scrollData, function(a, b) return ZO_TableOrderingFunction(a.data, b.data, "factionIcon", ATLAS_ScrollList_SORT_KEYS, ZO_SORT_ORDER_UP) end)
+			ZO_ScrollList_Commit(ATLAS_RIGHTPANE.ScrollList)		
+		end
+	)
+	ATLAS_RIGHTPANE.Headers.Dungeon = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)Dungeon",ATLAS_RIGHTPANE.Headers,"ZO_SortHeader") 
+	ATLAS_RIGHTPANE.Headers.Dungeon:SetDimensions(160,32)
+	ATLAS_RIGHTPANE.Headers.Dungeon:SetAnchor( LEFT, ATLAS_RIGHTPANE.Headers.Faction, RIGHT, 18, 0 )
+	ZO_SortHeader_Initialize(ATLAS_RIGHTPANE.Headers.Dungeon, "Dungeon List", "Dungeon", ZO_SORT_ORDER_UP, TEXT_ALIGN_LEFT, "ZoFontGameLargeBold")
+	ZO_SortHeader_SetTooltip(ATLAS_RIGHTPANE.Headers.Dungeon, "Sort on Dungeons")
+	ATLAS_RIGHTPANE.Headers.Dungeon:SetHandler("OnMouseUp", 
+		function() 
+			local scrollData = ZO_ScrollList_GetDataList(ATLAS_RIGHTPANE.ScrollList)
+			table.sort(scrollData, function(a, b) return ZO_TableOrderingFunction(a.data, b.data, "locationName", ATLAS_ScrollList_SORT_KEYS, ZO_SORT_ORDER_UP) end)
+			ZO_ScrollList_Commit(ATLAS_RIGHTPANE.ScrollList)		
+		end
+	)
+	ATLAS_RIGHTPANE.Headers.NormalLevel = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)NormalLevel",ATLAS_RIGHTPANE.Headers,"ZO_SortHeaderIcon") 
+	ATLAS_RIGHTPANE.Headers.NormalLevel:SetDimensions(16,32)
+	ATLAS_RIGHTPANE.Headers.NormalLevel:SetAnchor( LEFT, ATLAS_RIGHTPANE.Headers.Dungeon, RIGHT, 22, 0 )
+	ZO_SortHeader_InitializeArrowHeader(ATLAS_RIGHTPANE.Headers.NormalLevel, "NormalLevel", ZO_SORT_ORDER_UP)
+	ZO_SortHeader_SetTooltip(ATLAS_RIGHTPANE.Headers.NormalLevel, "Sort on normal level")
+	ATLAS_RIGHTPANE.Headers.NormalLevel:SetHandler("OnMouseUp", 
+		function() 
+			local scrollData = ZO_ScrollList_GetDataList(ATLAS_RIGHTPANE.ScrollList)
+			table.sort(scrollData, function(a, b) return ZO_TableOrderingFunction(a.data, b.data, "NormalLevel", ATLAS_ScrollList_SORT_KEYS, ZO_SORT_ORDER_UP) end)
+			ZO_ScrollList_Commit(ATLAS_RIGHTPANE.ScrollList)		
+		end
+	)
+	ATLAS_RIGHTPANE.Headers.VeteranLevel = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)VeteranLevel",ATLAS_RIGHTPANE.Headers,"ZO_SortHeaderIcon") 
+	ATLAS_RIGHTPANE.Headers.VeteranLevel:SetDimensions(16,32)
+	ATLAS_RIGHTPANE.Headers.VeteranLevel:SetAnchor( LEFT, ATLAS_RIGHTPANE.Headers.NormalLevel, RIGHT, 22, 0 )
+	ZO_SortHeader_InitializeArrowHeader(ATLAS_RIGHTPANE.Headers.VeteranLevel, "VeteranLevel", ZO_SORT_ORDER_UP)
+	ZO_SortHeader_SetTooltip(ATLAS_RIGHTPANE.Headers.VeteranLevel, "Sort on veteran level")
+	ATLAS_RIGHTPANE.Headers.VeteranLevel:SetHandler("OnMouseUp", 
+		function() 
+			local scrollData = ZO_ScrollList_GetDataList(ATLAS_RIGHTPANE.ScrollList)
+			table.sort(scrollData, function(a, b) return ZO_TableOrderingFunction(a.data, b.data, "VeteranLevel", ATLAS_ScrollList_SORT_KEYS, ZO_SORT_ORDER_UP) end)
+			ZO_ScrollList_Commit(ATLAS_RIGHTPANE.ScrollList)		
+		end
+	)
 	--
 	-- Create the scrollList, but don't fill it yet.
 	--	
-	ATLAS_ScrollList = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ScrollList", window, "ZO_ScrollList")	
-	ATLAS_ScrollList:SetAnchorFill(ATLASTLW)
+	ATLAS_RIGHTPANE.ScrollList = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)ScrollList", ATLAS_RIGHTPANE, "ZO_ScrollList")	
+	ATLAS_RIGHTPANE.ScrollList:SetDimensions(x, y-32)
+	ATLAS_RIGHTPANE.ScrollList:SetAnchor(TOPLEFT, ATLAS_RIGHTPANE.Headers, BOTTOMLEFT, 0, 0)
 	--
 	-- Add a datatype to the scrollList
 	--
-	ZO_ScrollList_Initialize(ATLAS_ScrollList)
-	ZO_ScrollList_EnableHighlight(ATLAS_ScrollList, "ZO_ThinListHighlight")
-	ZO_ScrollList_AddDataType(ATLAS_ScrollList, ATLAS_LOCATION_DATA, "AtlasLocationRow", 23, 
+	ZO_ScrollList_Initialize(ATLAS_RIGHTPANE.ScrollList)
+	ZO_ScrollList_EnableHighlight(ATLAS_RIGHTPANE.ScrollList, "ZO_ThinListHighlight")
+	ZO_ScrollList_AddDataType(ATLAS_RIGHTPANE.ScrollList, ATLAS_LOCATION_DATA, "AtlasLocationRow", 23, 
 		function(control, data) 				
-			local locationLabel = control:GetNamedChild("Location")
+			control:GetNamedChild("Location"):SetText(data.locationName) 
+			control:GetNamedChild("NormalLevel"):SetText(data.NormalLevel) 
+			control:GetNamedChild("VeteranLevel"):SetText(data.VeteranLevel) 
 
-   			locationLabel:SetText(data.locationName) 
-			locationLabel:SetEnabled( true )
-			locationLabel:SetMouseEnabled( true )	
+			if data.factionIcon then
+				control:GetNamedChild("Faction"):SetTexture(data.factionIcon)
+			--else
+			--	control:GetNamedChild("Faction"):SetHidden(true)
+			end 
 		end
 	)
 	--
 	-- Add data to the scrollList
 	--
-	local scrollData = ZO_ScrollList_GetDataList(ATLAS_ScrollList)
+	local scrollData = ZO_ScrollList_GetDataList(ATLAS_RIGHTPANE.ScrollList)
 
 	for i, v in pairs(ATLASData) do
-		table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_LOCATION_DATA, {locationName = i}))       		
+		local factionTexturePath = nil
+		if  v["INFO"]["FACTION"] == DAGGERFALL then
+			factionTexturePath = "/esoui/art/compass/ava_borderkeep_pin_daggerfall.dds"
+		elseif v["INFO"]["FACTION"] == ALDMERI then
+			factionTexturePath = "/esoui/art/compass/ava_borderkeep_pin_aldmeri.dds"
+		elseif v["INFO"]["FACTION"] == EBONHEART then
+			factionTexturePath = "/esoui/art/compass/ava_borderkeep_pin_ebonheart.dds"
+		elseif v["INFO"]["FACTION"] == UNKNOWN then
+			factionTexturePath = "Atlas/art/ava_borderkeep_pin_common.dds"
+		end
+		table.insert(scrollData, ZO_ScrollList_CreateDataEntry(ATLAS_LOCATION_DATA, 
+			{
+				locationName = i, 
+				NormalLevel = v["NORMAL"]["INFO"]["MINLEVEL"].."-"..v["NORMAL"]["INFO"]["MAXLEVEL"],
+				VeteranLevel = v["VETERAN"]["INFO"]["MINLEVEL"].."-"..v["VETERAN"]["INFO"]["MAXLEVEL"],
+				factionIcon = factionTexturePath
+			}
+		) )       		
 	end
 	table.sort(scrollData, function(a, b) return ZO_TableOrderingFunction(a.data, b.data, "locationName", ATLAS_ScrollList_SORT_KEYS, ZO_SORT_ORDER_UP) end)
-	ZO_ScrollList_Commit(ATLAS_ScrollList)		
+	ZO_ScrollList_Commit(ATLAS_RIGHTPANE.ScrollList)		
 	--
 	-- Create button for adding to the Rightpane
 	--
@@ -258,17 +349,17 @@ local function createAtlasRIghtPane()
     --
 	-- Create a fragment from the window and add it to the modeBar of the WorldMap RightPane
 	--
-	local bossFragment = ZO_FadeSceneFragment:New(window) 
+	local bossFragment = ZO_FadeSceneFragment:New(ATLAS_RIGHTPANE) 
     WORLD_MAP_INFO.modeBar:Add(ATLAS_LOOT_NAME, {bossFragment}, buttonData)
     --
     -- Create a few preHookHandlers so that the map shows up back again when hidden
     --     
-    ZO_PreHookHandler(window              , "OnHide", function() showAtlasWindows( false ) end)
+    ZO_PreHookHandler(ATLAS_RIGHTPANE     , "OnHide", function() showAtlasWindows( false ) end)
     ZO_PreHookHandler(ZO_WorldMapLocations, "OnShow", function() ZO_WorldMap:SetHidden( false ) showAtlasWindows( false ) end)
     ZO_PreHookHandler(ZO_WorldMapFilters  , "OnShow", function() ZO_WorldMap:SetHidden( false ) showAtlasWindows( false ) end)
     ZO_PreHookHandler(ZO_WorldMapKey      , "OnShow", function() ZO_WorldMap:SetHidden( false ) showAtlasWindows( false ) end)
     ZO_PreHookHandler(ZO_WorldMapQuests   , "OnShow", function() ZO_WorldMap:SetHidden( false ) showAtlasWindows( false ) end)	
-    ZO_PreHookHandler(window              , "OnShow", function() buildAtlasMap(GetMapName()) showAtlasLoot(GetMapName()) end)
+    ZO_PreHookHandler(ATLAS_RIGHTPANE     , "OnShow", function() ATLAS.chatWasMinimized = CHAT_SYSTEM:IsMinimized() buildAtlasMap(GetMapName()) showAtlasLoot(GetMapName()) end)
 end
 
 local function createAtlasInterface()
@@ -279,20 +370,12 @@ local function createAtlasInterface()
 	x = x + 500
 	y = y + 80
 
-	ATLAS_TLW = WINDOW_MANAGER:CreateTopLevelWindow(nil)
-	--ATLAS_TLW:SetMouseEnabled(true)		
+	ATLAS_TLW = WINDOW_MANAGER:CreateTopLevelWindow(nil)	
 	ATLAS_TLW:SetMovable( false )
 	ATLAS_TLW:SetClampedToScreen(true)
 	ATLAS_TLW:SetDimensions( x , y )
 	ATLAS_TLW:SetAnchor( TOPRIGHT, ZO_WorldMap, TOPRIGHT, 40, -40 )
 	ATLAS_TLW:SetHidden( true )
-	--[[
-	ATLAS_TLW.bd = WINDOW_MANAGER:CreateControl(nil, ATLAS_TLW, CT_BACKDROP)
-	ATLAS_TLW.bd:SetCenterTexture(["/esoui/art/chatwindow/chat_bg_center.dds"], 16, 1)
-	ATLAS_TLW.bd:SetEdgeTexture(["/esoui/art/chatwindow/chat_bg_edge.dds"], 32, 32, 32, 0)
-	ATLAS_TLW.bd:SetInsets(32,32,-32,-32)	
-	ATLAS_TLW.bd:SetAnchorFill(ATLAS_TLW)
-	]]
 	--
 	-- Define a label that holds the addonName and show it on top of the TLW
 	--
@@ -516,8 +599,10 @@ function ATLAS_LocationRowLocation_OnMouseUp(self, button, upInside)
 	ZO_WorldMap:SetHidden( true )
 	showAtlasWindows( true )
 	buildAtlasMap(self:GetText())
-	showAtlasLoot(self:GetText())		
-	CHAT_SYSTEM:Minimize()
+	showAtlasLoot(self:GetText())	
+	if not ATLAS.chatWasMinimized then	
+		CHAT_SYSTEM:Minimize()
+	end
 end
 
 function ATLAS:EVENT_ADD_ON_LOADED(eventCode, addonName, ...)
