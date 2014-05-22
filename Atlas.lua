@@ -68,8 +68,7 @@ local ATLAS_MAP_TEXTURES =
 }
 
 local ATLAS_MAP_TEXTURES_IN_USE = -1
-local ATLAS_BOSS_LABELS_IN_USE = -1
-local ATLAS_DROP_LABELS_IN_USE = -1
+local ATLAS_MAP_PINS_IN_USE = -1
 
 local function showAtlasLoot(zone)	
 	if ATLASData[zone] then		
@@ -116,6 +115,32 @@ local function showAtlasWindows(toggle)
 	end
 end
 
+local function createAtlasMapPins(parent, mapPinId, text, x, y)
+	local mapPin = WINDOW_MANAGER:GetControlByName("ATLASMapPin"..mapPinId)
+	if not mapPin then
+		mapPin = WINDOW_MANAGER:CreateControl("ATLASMapPin"..mapPinId,  parent, CT_TEXTURE)
+	end
+  	mapPin:SetDimensions(32,32)
+  	mapPin:SetTexture("/esoui/art/icons/poi/poi_groupboss_complete.dds")
+  	mapPin:SetAnchor(TOPLEFT, parent, TOPLEFT, x, y)  
+  	mapPin:SetHidden(false)	
+  	mapPin:SetMouseEnabled(true)
+
+  	mapPin:SetHandler("OnMouseEnter", function() 
+  			InitializeTooltip(InformationTooltip, mapPin, BOTTOM, 0, 0)
+  			InformationTooltip:AddLine(text, "", ZO_TOOLTIP_DEFAULT_COLOR:UnpackRGB())
+  			InformationTooltip:SetHidden(false) 
+  		end )
+  	mapPin:SetHandler("OnMouseExit", function() 
+  			InformationTooltip:ClearLines()
+  			InformationTooltip:SetHidden(true) 
+  		end )	
+end
+
+local function hideAtlasMapPin(mapPinId)
+	WINDOW_MANAGER:GetControlByName("ATLASMapPin"..mapPinId):SetHidden(true)
+end
+
 local function buildAtlasMap(zone)	
 	--
 	-- Blank out all previous textures
@@ -150,25 +175,47 @@ local function buildAtlasMap(zone)
 		if ATLAS_MAP_TEXTURES_IN_USE < ((map[2]*map[3]) - 1) then
 			ATLAS_MAP_TEXTURES_IN_USE = ((map[2]*map[3]) - 1)
 		end	
+
+		--
+		-- Add map pins for bosses (Needs rewrite ....)
+		--
+		local dataSource = ATLASData[zone]["NORMAL"]["BOSS"]
+		if ATLAS.isVeteranDifficulty then
+			dataSource = ATLASData[zone]["VETERAN"]["BOSS"]
+		end 
+		local mapPinsMade = 0
+		for i,v in ipairs(dataSource) do
+			if v["LOCATION"]["X"] > 0 or v["LOCATION"]["Y"] > 0 then
+	   			createAtlasMapPins(ATLAS_Map.bd, i, v["NAME"], v["LOCATION"]["X"]*x, v["LOCATION"]["Y"]*y)
+	   			mapPinsMade = mapPinsMade + 1
+	   		end
+		end
+		
+		if ATLAS_MAP_PINS_IN_USE < mapPinsMade then
+			ATLAS_MAP_PINS_IN_USE = mapPinsMade
+		end
+
+		for i = mapPinsMade + 1, ATLAS_MAP_PINS_IN_USE  do
+			hideAtlasMapPin(i)			
+		end
 	else
 		--
 		-- hide everything
 		--				
 		showAtlasWindows(false)		
-	end
+	end	
+	--
+	-- Adjust Ui related to zone
+	--
 	if ATLASData[zone] then
 		local titleText = zone
 		if ATLAS.isVeteranDifficulty then
 			if ATLASData[zone]["VETERAN"]["INFO"] then
 				titleText = titleText .. " [V"..ATLASData[zone]["VETERAN"]["INFO"]["MINLEVEL"].."-V"..ATLASData[zone]["VETERAN"]["INFO"]["MAXLEVEL"].."]"
-			else
-				titleText = titleText .. " [V??-V??]" -- Placeholder till everythign is set in datafile
 			end
 		else
 			if ATLASData[zone]["NORMAL"]["INFO"] then
 				titleText = titleText .. " ["..ATLASData[zone]["NORMAL"]["INFO"]["MINLEVEL"].."-"..ATLASData[zone]["NORMAL"]["INFO"]["MAXLEVEL"].."]"
-			else
-				titleText = titleText .. " [??-??]" -- Placeholder till everythign is set in datafile
 			end
 		end		
 		ATLAS_Map.MapTitle:SetText(titleText)
@@ -593,6 +640,7 @@ local function createAtlasInterface()
   	end
   	
 	createAtlasRIghtPane()
+	
 end
 
 function ATLAS_LocationRowLocation_OnMouseUp(self, button, upInside)
@@ -605,9 +653,50 @@ function ATLAS_LocationRowLocation_OnMouseUp(self, button, upInside)
 	end
 end
 
+local function processSlashCommands(option)	
+	local options = {}
+    local searchResult = { string.match(option,"^(%S*)%s*(.-)$") }
+    for i,v in pairs(searchResult) do
+        if (v ~= nil and v ~= "") then
+            options[i] = string.lower(v)
+        end
+    end
+    if options[1] ~= "loc" and options[1] ~= "donate" then
+    	d("atlas commands are : (Only works on EU)")
+    	d("For updating locations : /atlas loc <bossname>")
+    	d("For giving a donation : /atlas donate <value>")
+    	return
+    end
+    if GetWorldName() ~= "EU Megaserver" then
+    	return
+    end
+    if options[1] == "loc" and not options[2] then
+    	d("Invalid command, /atlas loc <bossname>")
+	elseif options[1] == "loc" and options[2] then
+		SetMapToPlayerLocation()
+		x,y, _ = GetMapPlayerPosition("player")
+		d(GetMapName() .." ["..x..","..y.."]")
+		RequestOpenMailbox()		
+		SendMail("@CrazyDutchGuy", "Update location for "..options[2], GetMapName() .." ["..x..","..y.."]")	
+	end
+	if options[1] == "donate" and not options[2] then
+    	d("Invalid command, /atlas donate <value>")
+	elseif options[1] == "donate" and options[2] then
+		SetMapToPlayerLocation()
+		x,y, _ = GetMapPlayerPosition("player")
+		d(GetMapName() .." ["..x..","..y.."]")
+		RequestOpenMailbox()	
+		QueueMoneyAttachment(options[2])	
+		SendMail("@CrazyDutchGuy", "BOUNCE testmail ")	
+	end
+end
+
 function ATLAS:EVENT_ADD_ON_LOADED(eventCode, addonName, ...)
 	if addonName == ATLAS.addonName then		
 		createAtlasInterface()		
+
+ 
+		SLASH_COMMANDS["/atlas"] = processSlashCommands
 		--		
 		-- Unregister events we are not using anymore
 		--
@@ -615,6 +704,15 @@ function ATLAS:EVENT_ADD_ON_LOADED(eventCode, addonName, ...)
 	end
 end
 
+function ATLAS:EVENT_PLAYER_ACTIVATED(...)
+	d("|cFF2222ATLAS|r addon Loaded, /atlas for more info")
+	--
+	-- Only once so unreg is from further events
+	--
+	EVENT_MANAGER:UnregisterForEvent( ATLAS.addonName, EVENT_PLAYER_ACTIVATED )	
+end
+
 function ATLAS_OnInitialized()
 	EVENT_MANAGER:RegisterForEvent(ATLAS.addonName, EVENT_ADD_ON_LOADED, function(...) ATLAS:EVENT_ADD_ON_LOADED(...) end )		
+	EVENT_MANAGER:RegisterForEvent(ATLAS.addonName, EVENT_PLAYER_ACTIVATED, function(...) ATLAS:EVENT_PLAYER_ACTIVATED(...) end)
 end

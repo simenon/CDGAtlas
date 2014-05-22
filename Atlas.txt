@@ -1,6 +1,6 @@
 ## APIVersion: 100003 
-## Title: |cFF2222ATLAS|r |c0066990.7|r - By |c00C000CrazyDutchGuy|r
-## Version: 0.7
+## Title: |cFF2222ATLAS|r |c0066990.8|r - By |c00C000CrazyDutchGuy|r
+## Version: 0.8
 ## Author: CrazyDutchGuy
 ## Description: ATLAS is an ingame map browser that can be used from any location to show dungeons, dungeon bosses and dungeon loot.
 ## SavedVariables: Atlas_SavedVariables 
