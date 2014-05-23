@@ -661,10 +661,11 @@ local function processSlashCommands(option)
             options[i] = string.lower(v)
         end
     end
-    if options[1] ~= "loc" and options[1] ~= "donate" then
+    if options[1] ~= "loc" and options[1] ~= "donate" and options[1] ~= "item" then
     	d("atlas commands are : (Only works on EU)")
     	d("For updating locations : /atlas loc <bossname>")
     	d("For giving a donation : /atlas donate <value>")
+    	d("For updating boss loot : /atlas item <bossname> <itemlink>")
     	return
     end
     if GetWorldName() ~= "EU Megaserver" then
@@ -675,19 +676,21 @@ local function processSlashCommands(option)
 	elseif options[1] == "loc" and options[2] then
 		SetMapToPlayerLocation()
 		x,y, _ = GetMapPlayerPosition("player")
-		d(GetMapName() .." ["..x..","..y.."]")
 		RequestOpenMailbox()		
 		SendMail("@CrazyDutchGuy", "Update location for "..options[2], GetMapName() .." ["..x..","..y.."]")	
 	end
 	if options[1] == "donate" and not options[2] then
     	d("Invalid command, /atlas donate <value>")
 	elseif options[1] == "donate" and options[2] then
-		SetMapToPlayerLocation()
-		x,y, _ = GetMapPlayerPosition("player")
-		d(GetMapName() .." ["..x..","..y.."]")
 		RequestOpenMailbox()	
 		QueueMoneyAttachment(options[2])	
-		SendMail("@CrazyDutchGuy", "BOUNCE testmail ")	
+		SendMail("@CrazyDutchGuy", "Atlas Donation")	
+	end
+	if options[1] == "item" and not options[2] and not options[3] then
+    	d("Invalid command, /atlas item <bossname> <itemlink>")
+	elseif options[1] == "item" and options[2] and  options[3] then
+		RequestOpenMailbox()		
+		SendMail("@CrazyDutchGuy", "Update loot for "..options[2], GetMapName() .." " .. options[3] )	
 	end
 end
 
